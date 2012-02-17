@@ -3,8 +3,19 @@
 Vote en ligne du BDE-UTC
 */
 
+import mattgu74.cas
 
 d(d) = Duration.is_positive(Date.between(Date.now(), d))
+
+base_url=Option.default("",Resource.base_url)
+
+cas_conf = 
+{
+  url = "https://cas.utc.fr/cas/" ; // <<-- sample url
+  service = "{base_url}"
+ } : Cas.config
+
+myCas = Cas(cas_conf)
 
 /*
 Parser d'url
@@ -29,6 +40,7 @@ On appelle les "routes conditionnelles"
 */
 urls_caller : Parser.general_parser(http_request -> resource) =
     parser
+	  | result={myCas.resource} -> _req -> result
       | get={urls_if()} -> get
 
 /*

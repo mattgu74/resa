@@ -13,14 +13,21 @@ Doit présenter :
  
 */
 
+state() = match myCas.get_status() with
+	    | {logged=_} -> WB.Button.make({link=<>Se déconnecter</> href=some("{base_url}/CAS/logout") callback=ignore}, [{danger}])
+	    | _ -> WB.Button.make({link=<>Se connecter</> href=some("{base_url}/CAS/login") callback=ignore}, [{success}])
+	  
+	  
+
 wait() = 
   interface(
   WB.Div.content(
     WB.Div.page_header(1, "Instructions de vote", some("")) <+>
     WB.Grid.row([
       {span=4 offset=none content=<img src="res/BDE.jpg" height=150px alt="BDE-UTC" />},
-     {span=10 offset=none content=<>Le vote sera ouvert du {Date.to_string(conf_start)} au {Date.to_string(conf_end)}... <br />
-Pour voter vous devrez vous connecter avec le CAS et être cotisant BDE. <br /></>}
+      {span=10 offset=none content=<>Le vote sera ouvert du {Date.to_string(conf_start)} au {Date.to_string(conf_end)}... <br />
+Pour voter vous devrez vous connecter avec le CAS et être cotisant BDE. <br /><br />
+		<center>{state()}</center> </>}
     ]) <+>
     WB.Div.page_header(1, "Le vote n'est pas encore ouvert", some("Soyez patient...")) <+>
     WB.Grid.row([

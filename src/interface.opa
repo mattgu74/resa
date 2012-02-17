@@ -8,6 +8,10 @@ import stdlib.themes.bootstrap
 import stdlib.widgets.bootstrap
 WB = WBootstrap
 
+c() = match myCas.get_status() with
+	  | {logged=login} -> <>Connecté en tant que {login}</>
+	  | _ -> <>Non connecté</>
+
 /**
 Interface
 */
@@ -18,7 +22,7 @@ container_app(x) =
   WB.Navigation.topbar(
     WB.Layout.fixed(
       WB.Navigation.brand(<>BDE-UTC :: Vote en ligne</>, some("/"), ignore) <+>
-      (<>Non connecté</> |> WB.pull_right(_))
+      (c() |> WB.pull_right(_))
     )
   ) <+>
   <br /><br /><br />

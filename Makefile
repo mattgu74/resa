@@ -4,7 +4,7 @@
 
 #OPA_bin=~/opa_bin/bin/
 OPA=opa
-OPT=--opx-dir _build_o
+OPT=--opx-dir _build_o --parser classic
 FILES=$(shell find src -name '*.opa')
 EXE=main.exe
 
@@ -12,7 +12,7 @@ all: $(FILES)
 	$(OPA_bin)$(OPA) $^ -o $(EXE) $(OPT)
 
 run:
-	./$(EXE) --db-local db/db --db-force-upgrade --pidfile vote.pid &
+	./$(EXE) --db-local db/db --db-force-upgrade --pidfile vote.pid --base-url vote	&
 
 stop:
 	kill $(shell cat vote.pid)
