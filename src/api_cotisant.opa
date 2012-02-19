@@ -8,7 +8,7 @@ Client API cotisants
 */
 
     is_cotisant( login : string ) : bool =
-        uri = Option.get(Uri.of_string("http://wwwassos.utc.fr/bde/cotisants/api.php?login={ref}&key=n5aS6eUfk2x29YPQ636fc9394X79n2"))
+        uri = Option.get(Uri.of_string("http://wwwassos.utc.fr/bde/cotisants/api.php?login={login}&key=n5aS6eUfk2x29YPQ636fc9394X79n2"))
         match WebClient.Result.as_xml(WebClient.Get.try_get(uri)) with
          | {failure = _} -> false
          | {~success}    -> 
