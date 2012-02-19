@@ -16,7 +16,7 @@ Client API cotisants
               | {success} -> 
                   match success.content with
                     | {~args ; ...} -> List.fold(
-                                                (v,a -> if v.name == "cotisant" then v.value else a,
+                                                (v,a -> if v.name == "cotisant" then v.value else a),
                                                 args, 
                                                 false)
                     | _ -> false
