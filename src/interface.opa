@@ -8,8 +8,13 @@ import stdlib.themes.bootstrap
 import stdlib.widgets.bootstrap
 WB = WBootstrap
 
+cot(login) = if is_cotisant(login) then
+               <> Tu es cotisant BDE-UTC. </>
+             else
+               <> Tu n'es pas cotisant BDE-UTC, tu ne peux pas voter. </>
+
 c() = match myCas.get_status() with
-	  | {logged=login} -> <>Connecté en tant que {login}</>
+	  | {logged=login} -> <>Connecté en tant que {login} - {cot(login)}</>
 	  | _ -> <>Non connecté</>
 
 /**
