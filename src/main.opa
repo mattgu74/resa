@@ -24,6 +24,8 @@ urls_if() : Parser.general_parser(http_request -> resource) =
     if d(conf_start) then
     // Attente de l'ouverture des votes
         parser
+         | "/vote" -> _req -> vote()
+         | "/result" -> _req -> result()
          | .* -> _req -> wait()
     else
         if d(conf_end) then
@@ -40,7 +42,7 @@ On appelle les "routes conditionnelles"
 */
 urls_caller : Parser.general_parser(http_request -> resource) =
     parser
-	  | result={myCas.resource} -> _req -> result
+      | result={myCas.resource} -> _req -> result
       | get={urls_if()} -> get
 
 /*

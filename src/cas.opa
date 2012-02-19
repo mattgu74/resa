@@ -79,7 +79,7 @@ Cas(conf : Cas.config) = {{
             match next2 with
               | {some = s2} -> w = xml_match(s2)
                                match List.head(w.cont) with
-                                | {text = t} -> {logged = t}
+                                | {text = t} -> {logged = String.replace(" ", "", t)}
                                 | _ -> {unlogged}
                                end
               | {none} -> {unlogged}
