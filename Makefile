@@ -12,10 +12,10 @@ all: $(FILES)
 	$(OPA_bin)$(OPA) $^ -o $(EXE) $(OPT)
 
 run:
-	./$(EXE) --db-local db/db --db-force-upgrade --pidfile vote.pid --base-url vote	&
+	./$(EXE) --db-local db/db --db-force-upgrade --pidfile resa.pid --base-url resa	&
 
 stop:
-	kill $(shell cat vote.pid)
+	kill $(shell cat resa.pid)
 	sleep 4
 
 reload: all stop run

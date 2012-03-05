@@ -100,6 +100,11 @@ Cas(conf : Cas.config) = {{
   get_status() =
     UserContext.execute(( a -> a), state)
 
+  get_login() = 
+    match get_status() with
+     | {logged=a} -> a
+     | {unlogged} -> "anonymous"
+
   is_logged() =
     match get_status() with
      | {logged=_} -> true

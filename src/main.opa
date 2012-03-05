@@ -1,11 +1,9 @@
 /*
 @author Matthieu Guffroy
-Vote en ligne du BDE-UTC
+Reservation de salles du BDE-UTC
 */
 
 import mattgu74.cas
-
-d(d) = Duration.is_positive(Date.between(Date.now(), d))
 
 base_url=Option.default("",Resource.base_url)
 
@@ -18,32 +16,12 @@ cas_conf =
 myCas = Cas(cas_conf)
 
 /*
-Parser d'url
-*/
-urls_if() : Parser.general_parser(http_request -> resource) =
-    if d(conf_start) then
-    // Attente de l'ouverture des votes
-        parser
-         | "/vote" -> _req -> vote()
-         | "/result" -> _req -> result()
-         | .* -> _req -> wait()
-    else
-        if d(conf_end) then
-        // Vote ouvert
-           parser
-            | .* -> _req -> vote()
-        else
-        // Vote clos
-           parser
-            | .* -> _req -> result()
-
-/*
 On appelle les "routes conditionnelles" 
 */
 urls_caller : Parser.general_parser(http_request -> resource) =
     parser
       | result={myCas.resource} -> _req -> result
-      | get={urls_if()} -> get
+      | .* -> _req -> resa()
 
 /*
 Démarrage du serveur
