@@ -14,6 +14,10 @@ all: $(FILES)
 run:
 	./$(EXE) --db-local db/db --db-force-upgrade --pidfile resa.pid --base-url resa	&
 
+translate: $(FILES)
+	opa-translate --parser classic --printer js-like $^ --build-dir src_jslike
+
+
 stop:
 	kill $(shell cat resa.pid)
 	sleep 4
