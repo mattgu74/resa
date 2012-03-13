@@ -116,8 +116,8 @@ resa_ok(s)=
         <h3>Réservations validées</h3>
         <ul>
             {List.fold((r,a -> a <+> show_resa(r)), List.filter((a -> (match a.etat with
-| {accepte=_} -> true
-| _ -> false && a.salle == s)), /resas), <></>)}
+| {accepte=_} -> a.salle == s
+| _ -> false)), /resas), <></>)}
         </ul>
         <br /><br />
 
