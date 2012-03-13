@@ -9,7 +9,7 @@ import stdlib.widgets.bootstrap
 WB = WBootstrap
 
 c() = match myCas.get_status() with
-	  | {logged=login} -> <a href="#">Connecté en tant que {login}</>
+	  | {logged=login} -> <><a href="#">Connecté en tant que {login}</a> - <a onclick={_ -> myCas.logout_void()}>Se déconnecter</a></>
 	  | _ -> <a href="#">Non connecté</>
 
 state() = match myCas.get_status() with
