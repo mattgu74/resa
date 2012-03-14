@@ -14,13 +14,19 @@ all: $(FILES)
 run:
 	./$(EXE) --db-local db/db --db-force-upgrade --pidfile resa.pid --base-url resa	--port 8081 &
 
+run2:
+	./$(EXE) --db-local db2/db2 --db-force-upgrade --pidfile resa2.pid --base-url resa --port 8082 &
+
+
 translate: $(FILES)
 	opa-translate --parser classic --printer js-like $^ --build-dir src_jslike
 
 
 stop:
 	kill $(shell cat resa.pid)
-	sleep 4
+
+stop2:
+	kill $(shell cat resa2.pid)
 
 reload: all stop run
 
