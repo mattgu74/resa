@@ -12,7 +12,7 @@ all: $(FILES)
 	$(OPA_bin)$(OPA) $^ -o $(EXE) $(OPT)
 
 run:
-	./$(EXE) --db-local db/db --db-force-upgrade --pidfile resa.pid --base-url resa	--port 8081 &
+	./$(EXE) --db-local db/db --db-force-upgrade --pidfile resa.pid --base-url resa	--port 8081 --database mongo &
 
 run2:
 	./$(EXE) --db-local db2/db2 --db-force-upgrade --pidfile resa2.pid --base-url resa --port 8082 &
