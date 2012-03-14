@@ -11,12 +11,14 @@ type resa =
                or {string accepte} etat,
    string comment}
 
-database list(resa) /resas
+database mydb {
+  list(resa) /resas = [];
+}
 
 function list(resa) my_resas() {
     List.filter((function(a) {
                  a.login == myCas.get_login()
-      }), /resas)
+      }), /mydb/resas)
 }
 
 function xhtml show_resa(r) {
@@ -33,23 +35,23 @@ function xhtml show_resa(r) {
 }
 
 function delete(r) {
-    /resas <- List.filter((function(a) {
+    /mydb/resas <- List.filter((function(a) {
                            a != r
-                }), /resas);
+                }), /mydb/resas);
     Client.reload()
 }
 
 function refuse(r) {
-    /resas <- List.map((function(a) {
+    /mydb/resas <- List.map((function(a) {
                         if (a == r) {r with etat : {refuse : ""}} else a
-                }), /resas);
+                }), /mydb/resas);
     Client.reload()
 }
 
 function autorise(r) {
-    /resas <- List.map((function(a) {
+    /mydb/resas <- List.map((function(a) {
                         if (a == r) {r with etat : {accepte : ""}} else a
-                }), /resas);
+                }), /mydb/resas);
     Client.reload()
 }
 
@@ -99,7 +101,7 @@ function form() {
              ~comment,
              etat : {en_attente}
              };
-        /resas <- List.add(r, /resas);
+        /mydb/resas <- List.add(r, /mydb/resas);
         Client.reload();
         void
     }
@@ -187,7 +189,7 @@ function xhtml resa_wait(s) {
              }),
              List.filter((function(a) {
                           (a.etat == {en_attente}) && (a.salle == s)
-               }), /resas),
+               }), /mydb/resas),
              <></>)}
 </ul>
      
@@ -206,7 +208,7 @@ function xhtml resa_ok(s) {
                           case { accepte : _ }: a.salle == s
                           default: false
                           }
-               }), /resas),
+               }), /mydb/resas),
              <></>)}
 </ul>
      
