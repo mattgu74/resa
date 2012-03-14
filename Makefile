@@ -12,7 +12,7 @@ all: $(FILES)
 	$(OPA_bin)$(OPA) $^ -o $(EXE) $(OPT)
 
 run:
-	./$(EXE) --db-local db/db --db-force-upgrade --pidfile resa.pid --base-url resa	--port 8081 &
+	./$(EXE) --db-local db/db --db-force-upgrade --pidfile resa.pid --base-url resa	--port 8081 --database mongo &
 
 translate: $(FILES)
 	opa-translate --parser classic --printer js-like $^ --build-dir src_jslike
