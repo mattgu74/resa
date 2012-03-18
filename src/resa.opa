@@ -52,7 +52,7 @@ buttons(r) =
                <>
                <a onclick={_ -> delete(r)}><span class="icon icon-color icon-trash"/></a></>
            else
-               <></>
+               <>{myCas.get_login()}</>
 
 form() =
        save()=
@@ -101,8 +101,8 @@ my_resa()=
 make_resa()=
     WB.Div.page_header(1, "Faire une réservation", none) <+>
     WB.Grid.row([
-        {span=10 offset=none content=form()},
-        {span=5 offset=none content=my_resa()}
+        {span=8 offset=none content=form()},
+        {span=8 offset=none content=my_resa()}
     ])
 
 resa_wait(s)=
@@ -124,8 +124,8 @@ resa_ok(s)=
 show_salle(s) = 
     WB.Div.page_header(1, s, none) <+>
     WB.Grid.row([
-       {span=10 offset=none content=resa_ok(s)},
-       {span=5 offset=none content=resa_wait(s)}
+       {span=8 offset=none content=resa_ok(s)},
+       {span=8 offset=none content=resa_wait(s)}
     ])          
 
 resa() =   
