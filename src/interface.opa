@@ -4,7 +4,9 @@ Reservation de salle du BDE-UTC
 */
 
 // Import de bootstrap
-import stdlib.themes.bootstrap
+
+import stdlib.themes.bootstrap.v1.4.0
+import stdlib.themes.bootstrap.opa-icons
 import stdlib.widgets.bootstrap
 WB = WBootstrap
 
@@ -40,7 +42,7 @@ container_app(x) =
     WB.Div.page_header(1, "Reservation de salle", some("")) <+>
     WB.Grid.row([
       {span=4 offset=none content=<img src="res/BDE.jpg" height=150px alt="BDE-UTC" />},
-      {span=10 offset=none content=<>Merci de vous connecter pour accèder à l'outil de réservation de salle !<br /><br />
+      {span=5 offset=some(5) content=<>Merci de vous connecter pour accèder à l'outil de réservation de salle !<br /><br />
 		<center>{state()}</center> </>}
     ])
     )
