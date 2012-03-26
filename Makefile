@@ -9,7 +9,7 @@ OPT-js=--opx-dir _build_js --database mongo
 FILES=$(shell find src -name '*.opa')
 FILES-JS=$(shell find src_jslike -name '*.opa')
 EXE=main.exe
-EXE-MONGO=main.js.exe
+EXE-JS=main.js.exe
 
 all: $(FILES)
 	$(OPA_bin)$(OPA) $^ -o $(EXE) $(OPT)
@@ -20,8 +20,8 @@ all-js: $(FILES-JS)
 run:
 	./$(EXE) --db-local db/db --db-force-upgrade --pidfile resa.pid --base-url resa	--port 8081 &
 
-run-mongo:
-	./$(EXE-MONGO) --db-remote sql.mde.utc --pidfile resa-mongo.pid --base-url resa --port 8083 &
+run-js:
+	./$(EXE-JD) --db-local db/db --db-force-upgrade --pidfile resa-js.pid --base-url resa --port 8083 &
 
 translate: $(FILES)
 	opa-translate --parser classic --printer js-like $^ --build-dir src_jslike
@@ -29,8 +29,8 @@ translate: $(FILES)
 stop:
 	kill $(shell cat resa.pid)
 
-stop-mongo:
-	kill $(shell cat resa-mongo.pid)
+stop-js:
+	kill $(shell cat resa-js.pid)
 
 reload: all stop run
 
