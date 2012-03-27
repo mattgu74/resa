@@ -25,9 +25,9 @@ my_resas() : list(resa) = List.filter((a -> a.login == myCas.get_login()), /resa
 
 show_resa(r) : xhtml =
              status = match r.etat with
-                       | {en_attente} -> WBootstrap.Label.make("En attente", {default})
-                       | {refuse=_} -> WBootstrap.Label.make("Refusé", {important})
-                       | {accepte=_} -> WBootstrap.Label.make("Accepté", {success})
+                       | {en_attente} -> WB.Label.make(<>En attente</>, {default})
+                       | {refuse=_} -> WB.Label.make(<>Refusé</>, {important})
+                       | {accepte=_} -> WB.Label.make(<>Accepté</>, {success})
                       end
              <li>{status}{WDatepicker.show_default(Random.string(4),r.date)} {r.deb} - {r.fin} : {r.salle} ({r.assos}) {buttons(r)}</li>
 
